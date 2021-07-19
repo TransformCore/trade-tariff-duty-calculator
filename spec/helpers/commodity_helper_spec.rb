@@ -191,6 +191,19 @@ RSpec.describe CommodityHelper do
     end
   end
 
+  describe '#applicable_document_codes' do
+    let(:expected_options) do
+      {
+        '103' => ['N851', ''],
+        '105' => ['C644', 'Y929', ''],
+      }
+    end
+
+    it 'returns the applicable document codes' do
+      expect(helper.applicable_document_codes).to eq(expected_options)
+    end
+  end
+
   describe '#applicable_measure_units' do
     let(:expected_measure_units) do
       {

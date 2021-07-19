@@ -45,6 +45,9 @@ Rails.application.routes.draw do
 
     get 'additional-codes/:measure_type_id', to: 'steps/additional_codes#show', as: 'additional_codes'
     post 'additional-codes/:measure_type_id', to: 'steps/additional_codes#create'
+
+    get 'document-codes/:measure_type_id', to: 'steps/document_codes#show', as: 'documents'
+    post 'document-codes/:measure_type_id', to: 'steps/document_codes#create'
   end
 
   get '404', to: 'errors#not_found', via: :all

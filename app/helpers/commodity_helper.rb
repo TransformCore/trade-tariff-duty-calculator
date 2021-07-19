@@ -33,6 +33,25 @@ module CommodityHelper
       end
   end
 
+  def applicable_document_codes
+    document_codes = filtered_commodity.import_measures.each_with_object({}) do |measure, acc|
+      next if measure.document_codes.blank?
+
+      acc[measure.measure_type.id] ||= []
+      acc[measure.measure_type.id].concat(measure.document_codes)
+    end
+
+    {
+      user_session.commodity_source => document_codes.slice(
+        *Api::MeasureType::SUPPORTED_MEASURE_TYPE_IDS,
+      ),
+    }
+  end
+
+  def applicable_document_codes?
+    applicable_document_codes.values.any?(&:present?)
+  end
+
   def applicable_additional_codes?
     applicable_additional_codes.values.any?(&:present?)
   end

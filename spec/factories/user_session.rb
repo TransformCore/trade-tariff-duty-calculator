@@ -84,6 +84,21 @@ FactoryBot.define do
     end
   end
 
+  trait :with_document_codes do
+    document_code do
+      {
+        'uk' => {
+          '103' => ['N851', ''],
+          '105' => ['C644', 'Y929', ''],
+        },
+        'xi' => {
+          '142' => ['N851', ''],
+          '353' => ['C644', 'Y929', ''],
+        },
+      }
+    end
+  end
+
   trait :with_no_duty_route_eu do
     country_of_origin { 'RO' }
     import_destination { 'XI' }
