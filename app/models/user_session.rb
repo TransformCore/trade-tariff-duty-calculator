@@ -5,6 +5,7 @@ class UserSession
     @session = session
     @session['answers'] ||= {}
     @session['answers'][Steps::AdditionalCode.id] ||= { 'xi' => {}, 'uk' => {} }
+    @session['answers'][Steps::DocumentCode.id] ||= { 'xi' => {}, 'uk' => {} }
   end
 
   def remove_step_ids(ids)
@@ -113,12 +114,28 @@ class UserSession
     session['answers'][Steps::AdditionalCode.id]['xi'].merge!(value)
   end
 
+  def document_code_uk=(value)
+    session['answers'][Steps::DocumentCode.id]['uk'].merge!(value)
+  end
+
+  def document_code_xi=(value)
+    session['answers'][Steps::DocumentCode.id]['xi'].merge!(value)
+  end
+
   def additional_code_uk
     session['answers'][Steps::AdditionalCode.id]['uk']
   end
 
   def additional_code_xi
     session['answers'][Steps::AdditionalCode.id]['xi']
+  end
+
+  def document_code_uk
+    session['answers'][Steps::DocumentCode.id]['uk']
+  end
+
+  def document_code_xi
+    session['answers'][Steps::DocumentCode.id]['xi']
   end
 
   def measure_type_ids

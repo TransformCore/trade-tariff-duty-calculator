@@ -1,6 +1,7 @@
 module Api
   class MeasureCondition < Api::Base
     attributes :action,
+               :action_code,
                :condition,
                :condition_code,
                :condition_duty_amount,

@@ -1,0 +1,21 @@
+<%= render 'steps/shared/back_link' %>
+
+<%= form_for @step, builder: GOVUKDesignSystemFormBuilder::FormBuilder, url: documents_path do |f| %>
+  <%= f.govuk_error_summary %>
+
+  <span class="govuk-caption-xl">Calculate import duties</span>
+  <h1 class="govuk-heading-xl">Do you have any of the following documents?</h1>
+  <span class="govuk-hint govuk-!-margin-bottom-7">
+    You may be able to reduce the duty applicable if you possess and can present one of the following documents.
+  </span>
+
+  <% if @step.applicable_document_codes.dig('uk', @step.measure_type_id).present? %>
+    <%= f.govuk_collection_check_boxes :document_code_uk, @step.options_for_select_for(source: 'uk'), :id, :name, legend: { text: '' } %>
+  <% end %>
+
+  <% if @step.applicable_document_codes.dig('xi', @step.measure_type_id).present? %>
+    <%= f.govuk_collection_check_boxes :document_code_xi, @step.options_for_select_for(source: 'xi'), :id, :name, legend: { text: '' } %>
+  <% end %>
+
+  <%= f.govuk_submit %>
+<% end %>

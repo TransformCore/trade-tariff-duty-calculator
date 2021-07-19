@@ -29,6 +29,10 @@ module Api
                :reduction_indicator,
                :vat
 
+    def document_codes
+      measure_conditions.map(&:document_code)
+    end
+
     def evaluator_for(user_session)
       if ad_valorem?
         ExpressionEvaluators::AdValorem.new(self, component, user_session)
